@@ -1,35 +1,11 @@
 # Better Sleep
-![image](./assets/bettersleep_expo.gif)
 
-## Getting Started
+![image](./assets/video.gif)
+## preview application
 
-### prerequisite
+estimated will finish in 6 jun
 
-- [nodejs](https://nodejs.org/en/) (recommend version lts 16.0)
-- [java jdk](https://adoptopenjdk.net/) (recommend openjdk 11, jvm hotspot)
-- [yarn](https://yarnpkg.com/getting-started/install)
-- [gradle](https://gradle.org/install/)
-- [expo-cli](https://docs.expo.dev/workflow/expo-cli/)
-- [android sdk](https://developer.android.com/studio/) (install android studio to get android sdk)
-
-set environment
-```bash
-export ANDROID_SDK_ROOT=~/Android/Sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-
-export PATH=$HOME/Downloads/jdk-11.0.15+10/bin/:$PATH
-export PATH=$HOME/Downloads/node-v16.15.0-linux-x64/bin:$PATH
-```
-development app
-```bash
-yarn install
-yarn android
-```
-build app
-```bash
-expo prebuild
-cd android && ./gradlew build
-## change app.json for configuration your app
-## file apk in android/app/build/outputs/apk/release/app-release.apk
-```
+link resource: 
+- [reactnative.dev](https://reactnative.dev/)
+- [reactjs.org](https://reactjs.org/)
+- [developer.android.com](https://developer.android.com/)
