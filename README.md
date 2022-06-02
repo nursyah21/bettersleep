@@ -1,6 +1,5 @@
 # Better Sleep
-![image](https://img.shields.io/github/issues/nursyah21/bettersleep) ![image](https://img.shields.io/github/license/nursyah21/bettersleep)
-
+![image](./assets/bettersleep_expo.gif)
 
 ## Getting Started
 
@@ -34,10 +33,3 @@ cd android && ./gradlew build
 ## change app.json for configuration your app
 ## file apk in android/app/build/outputs/apk/release/app-release.apk
 ```
-
-
-### what to build
-[ ] get time 20:30
-[ ] set a alarm
-[ ] figure out to make it rotate
-[ ] 
