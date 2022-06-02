@@ -1,9 +1,17 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require('expo/metro-config');
-const config = getDefaultConfig(__dirname);
+/**
+ * Metro configuration for React Native
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 
-config.transformer.minifierConfig.compress.drop_console = true;
-
-config.resolver.sourceExts.push("cjs")
-
-module.exports = config;
+module.exports = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
+};
