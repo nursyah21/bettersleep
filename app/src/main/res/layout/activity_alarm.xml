@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".AlarmActivity">
+
+    <TextView
+        android:id="@+id/timeSleepTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:text="test"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/currentTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/timeSleepTextView"
+        android:text="10"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText"
+        />
+
+    <Button
+        android:id="@+id/alarmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="play"
+        android:layout_centerInParent="true"
+        tools:ignore="HardcodedText" />
+
+
+</RelativeLayout>

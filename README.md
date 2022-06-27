@@ -1,11 +1,14 @@
 # Better Sleep
 
-![image](./assets/video.gif)
-## preview application
+update 26/jun, 
+migrate from react native to android-studio
 
-estimated will finish in 6 jun
+min requirement: android 4.4 (kitkat)
 
-link resource: 
-- [reactnative.dev](https://reactnative.dev/)
-- [reactjs.org](https://reactjs.org/)
-- [developer.android.com](https://developer.android.com/)
+`mock up`
+![](./bettersleep.gif)
+
+
+still under development
+
+source-code: [src](app/src/main/java/com/example/test1/)
