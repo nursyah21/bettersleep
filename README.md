@@ -6,6 +6,7 @@ migrate from react native to android-studio
 min requirement: android 4.4 (kitkat)
 
 `mock up`
+
 ![](./bettersleep.gif)
 
 
