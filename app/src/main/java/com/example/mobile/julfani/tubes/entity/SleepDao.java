@@ -1,5 +1,4 @@
-package com.example.bettersleep.entity;
-
+package com.example.mobile.julfani.tubes.entity;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -10,8 +9,8 @@ import java.util.List;
 
 @Dao
 public interface SleepDao {
-    @Query("SELECT * FROM sleep_table ORDER BY id ASC")
-    LiveData<List<Sleep>> getOrderAscSleep();
+    @Query("SELECT * FROM sleep_table ORDER BY data DESC")
+    LiveData<List<Sleep>> getAllData();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Sleep sleep);

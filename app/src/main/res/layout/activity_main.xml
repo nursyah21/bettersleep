@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
+    android:background="@drawable/background"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <!-- better sleep -->
     <TextView
-        android:id="@+id/timeTextView"
+        android:id="@+id/bettersleep_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" "
-        android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="55dp"
+        android:text="bettersleep"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
         tools:ignore="HardcodedText" />
 
-    <TimePicker
-        android:id="@+id/alarmTimePicker"
+    <!-- run clock -->
+    <TextView
+        android:id="@+id/current_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"
-        app:layout_constraintTop_toBottomOf="@id/timeTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:targetApi="lollipop" />
+        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true"
+        android:text="0:0"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_below="@id/bettersleep_textview"
+        tools:ignore="HardcodedText" />
 
+    <!-- set alarm -->
     <Button
-        android:id="@+id/setAlarmBtn"
+        android:id="@+id/alarm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/alarmTimePicker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="set alarm"
-        tools:ignore="HardcodedText"/>
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button2"
+        android:drawableEnd="@drawable/ic_alarm"
+        android:layout_marginBottom="10dp"
+        android:layout_centerInParent="true"
+        android:text="@string/set_alarm"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- stats button-->
+    <Button
+        android:id="@+id/stats_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="statistics"
+        android:textSize="14sp"
+        android:drawableStart="@drawable/moon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="HardcodedText" />
+
+
+</RelativeLayout>

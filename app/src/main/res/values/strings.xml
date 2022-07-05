@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bettersleep</string>
+    <string name="set_alarm">04:00</string>
 </resources>
