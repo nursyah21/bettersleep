@@ -2,10 +2,11 @@
 
 min requirement: android 4.4 (kitkat)
 
-update 5/jul
+-----
+update 5/jul finalisasi
 
-final project
 ![](bettersleep_final.gif)
+
 [download apk v1.0.0](https://github.com/nursyah21/bettersleep/releases/tag/v1.0.0)
 
 
