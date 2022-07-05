@@ -25,4 +25,4 @@ migrate from react native to android-studio
 
 still under development
 
-source-code: [src](app/src/main/java/com/example/test1/)
+source-code: [src](app/src/main/java/com/example/mobile/julfani/tubes)

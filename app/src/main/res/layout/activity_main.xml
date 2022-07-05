@@ -55,7 +55,6 @@
         android:background="@drawable/rounded_button"
         android:text="statistics"
         android:textSize="14sp"
-        android:drawableStart="@drawable/moon"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         tools:ignore="HardcodedText" />
