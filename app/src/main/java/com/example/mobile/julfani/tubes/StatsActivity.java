@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile.julfani.tubes.entity.Sleep;
 import com.example.mobile.julfani.tubes.entity.SleepViewModel;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
 
         /* set statusbar transparent */
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utils.fullScreen(this);
+
 
         /* recycle view */
         RecyclerView recyclerView = findViewById(R.id.recycleview);
@@ -108,6 +110,13 @@ public class StatsActivity extends AppCompatActivity {
         }
 
         averageVal /= listDuration.size();
+
+        /*  update today val */
+        String dateformate = DateFormat.getInstance().format(Calendar.getInstance().getTime()).split(" ")[0];
+
+        if(sleepList.size() != 0 && !sleepList.get(1).getData().split(" ")[0].equals(dateformate)){
+            todayVal = 0;
+        }
 
         today.setText("today: " + (todayVal >= 60 ? (todayVal / 60)+"h "+(todayVal % 60) + "m" : todayVal + "m"));
         avg.setText("average: " + (averageVal >= 60 ? (averageVal / 60) + "h " + (todayVal % 60) + "m" : todayVal + "m"));

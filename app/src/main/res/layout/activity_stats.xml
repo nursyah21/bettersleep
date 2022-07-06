@@ -65,8 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:backgroundTint="#111E4E"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/ic_baseline_delete_24"
+        app:backgroundTint="@color/warna1"
         tools:ignore="ContentDescription,UnusedAttribute" />
 
 </RelativeLayout>

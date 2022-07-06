@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /* set statusbar transparent */
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utils.fullScreen(this);
 
         /* set alarms */
         findViewById(R.id.alarm_button).setOnClickListener(v-> startActivity(new Intent(MainActivity.this, AlarmActivity.class)));
@@ -36,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
         alarmButton = findViewById(R.id.alarm_button);
         runClock();
 
-
+        Utils.hideNavbar(this);
 
 
     }
+
+
 
 
     private void runClock(){

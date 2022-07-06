@@ -1,19 +1,23 @@
 package com.example.mobile.julfani.tubes;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mobile.julfani.tubes.entity.Sleep;
@@ -28,6 +32,11 @@ public class SleepActivity extends AppCompatActivity {
     private Ringtone alarm;
     private static int minutes;
     private boolean run, found;
+
+    final String channelidStr = "notification";
+    NotificationCompat.Builder builder;
+    NotificationManagerCompat notificationManager;
+
     Handler handler;
 
     @Override
@@ -36,7 +45,7 @@ public class SleepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sleep);
 
         /* set statusbar transparent */
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utils.fullScreen(this);
 
         /* initialization */
         found = false;
@@ -52,11 +61,52 @@ public class SleepActivity extends AppCompatActivity {
 
         /* run alarm */
         handler.post(runnable());
+
+        Utils.hideNavbar(this);
+
+        createNotification();
     }
+
+    public void createNotification(){
+
+        builder = new NotificationCompat.Builder(this, channelidStr)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("better sleep")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            builder.setDefaults(NotificationManager.IMPORTANCE_LOW);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "better sleep";
+            String description = "sleep in "+ minutes;
+            int importance = NotificationManager.IMPORTANCE_LOW;
+
+            NotificationChannel channel = new NotificationChannel(channelidStr, name, importance);
+            channel.setDescription(description);
+            channel.setVibrationPattern(new long[]{0});
+            channel.enableVibration(true);
+
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager = NotificationManagerCompat.from(this);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1, builder.build());
+
+    }
+
 
     public void launchMainActivity (View view){
         handler.removeCallbacks(runnable());
         run = false;
+
+        notificationManager.deleteNotificationChannel(channelidStr);
         finish();
 
         if(found){
@@ -75,6 +125,9 @@ public class SleepActivity extends AppCompatActivity {
 
                 currentTimeTextView.setText(result);
 
+                /* update notification  */
+                builder.setContentText(result);
+                notificationManager.notify(1, builder.build());
 
                 minutes -= 1;
                 if(run) handler.postDelayed(this, 1000);
@@ -82,6 +135,11 @@ public class SleepActivity extends AppCompatActivity {
                 if(minutes <= 0){
                     result = "finish";
                     currentTimeTextView.setText(result);
+
+                    /* update notification  */
+                    builder.setContentText(result);
+                    notificationManager.notify(1, builder.build());
+
                     Button button= findViewById(R.id.end_sleep);
                     button.setText(result);
                     handler.removeCallbacks(this);

@@ -3,7 +3,6 @@ package com.example.mobile.julfani.tubes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +19,15 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
 
         /* set statusbar transparent */
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utils.fullScreen(this);
 
         /* set timepicker */
         setTimePicker();
 
 
         findViewById(R.id.start_sleeping).setOnClickListener(this::launchSleepingActivity);
+
+        Utils.hideNavbar(this);
     }
 
     private void setTimePicker(){

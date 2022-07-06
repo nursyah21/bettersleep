@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/drawable/rounded_button_stats.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/sun.xml" value="0.1205" />
         <entry key="app/src/main/res/layout/activity_alarm.xml" value="0.17864583333333334" />
-        <entry key="app/src/main/res/layout/activity_confirm_delete.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_confirm_delete.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_sleep.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/layout/activity_stats.xml" value="0.25" />
