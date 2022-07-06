@@ -3,7 +3,9 @@
 min requirement: android 4.4 (kitkat)
 
 ----
-update 6/jul fix bug and add notification fiture
+update 6/jul 
+- fix bug
+- add notification
 
 [download apk v1.1](https://github.com/nursyah21/bettersleep/releases/tag/v1.1)
 
