@@ -16,15 +16,22 @@
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/left_rounded_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/navbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/rounded_button2.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/rounded_button_stats.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/sun.xml" value="0.1205" />
-        <entry key="app/src/main/res/layout/activity_alarm.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_alarm.xml" value="0.28278041074249605" />
         <entry key="app/src/main/res/layout/activity_confirm_delete.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_sleep.xml" value="0.17864583333333334" />
-        <entry key="app/src/main/res/layout/activity_stats.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_options_alarm.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sleep.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_stats.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/navbar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/options_alarm.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/layout/recycleview.xml" value="0.1" />
       </map>
     </option>

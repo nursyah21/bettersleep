@@ -1,16 +1,21 @@
-package com.example.mobile.julfani.tubes;
+package com.example.mobile.julfani.tubes.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobile.julfani.tubes.R;
+import com.example.mobile.julfani.tubes.utils.SleepListAdapter;
+import com.example.mobile.julfani.tubes.utils.Utils;
 import com.example.mobile.julfani.tubes.entity.Sleep;
 import com.example.mobile.julfani.tubes.entity.SleepViewModel;
 
@@ -32,7 +37,11 @@ public class StatsActivity extends AppCompatActivity {
 
         /* set statusbar transparent */
         Utils.fullScreen(this);
+        Utils.hideNavbar(this);
 
+        /* set stats icon */
+        ImageView imageView = findViewById(R.id.stats_activity);
+        imageView.setImageResource(R.drawable.statisticsiconselect);
 
         /* recycle view */
         RecyclerView recyclerView = findViewById(R.id.recycleview);
@@ -54,8 +63,19 @@ public class StatsActivity extends AppCompatActivity {
             sleepListAdapter.setSleepList(sleeps);
         });
 
-        /* onclick */
-        findViewById(R.id.fab_delete).setOnClickListener(view -> startActivity(new Intent(this, ConfirmDeleteActivity.class)));
+        /* confirm delete */
+        findViewById(R.id.fab_delete).setOnClickListener(view ->
+                startActivity(new Intent(this, ConfirmDeleteActivity.class)));
+
+      /* back to home */
+        findViewById(R.id.home).setOnClickListener(v-> finish());
+
+        /* see moon */
+        findViewById(R.id.moon_activity).setOnClickListener(v ->{
+            finish();
+            startActivity(new Intent(this, MoonActivity .class));
+        });
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,9 +90,15 @@ public class StatsActivity extends AppCompatActivity {
         }
 
         LinkedList<Integer> listDuration = new LinkedList<>();
+
         boolean firstData = true;
         String date = "";
         int total = 0;
+        if(2>1){
+            String test = sleepList.get(0).getData().toString();
+            Toast.makeText(this, test, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         /* find average */
         for(Sleep i: sleepList){

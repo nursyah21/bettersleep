@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface SleepDao {
-    @Query("SELECT * FROM sleep_table ORDER BY data DESC")
+    @Query("SELECT * FROM sleep_table ORDER BY date, time DESC")
     LiveData<List<Sleep>> getAllData();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

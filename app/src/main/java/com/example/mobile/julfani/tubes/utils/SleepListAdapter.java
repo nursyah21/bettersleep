@@ -1,4 +1,4 @@
-package com.example.mobile.julfani.tubes;
+package com.example.mobile.julfani.tubes.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobile.julfani.tubes.R;
 import com.example.mobile.julfani.tubes.entity.Sleep;
 
 import java.util.List;
@@ -42,8 +43,7 @@ public class SleepListAdapter extends RecyclerView.Adapter<SleepViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SleepViewHolder holder, int position) {
-        Sleep current = sleepList.get(position);
-        String res = current.getData() + "m";
+        String res = sleepList.get(position).getId() + " " + Utils.formatTime(sleepList.get(position).getDuration());
         holder.textView.setText(res);
     }
 

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">bettersleep</string>
-    <string name="set_alarm">04:00</string>
+    <string name="set_alarm">set alarm</string>
+    <string name="options_alarm">only play once</string>
+    <string name="description_app"> you need to sleep, That\'s the thing I made when making this app. This app is meant to remind you, even when we\'re being chased by multiple deadlines we need to sleep. Set a bedtime in between your work to make sure you get enough sleep </string>
 </resources>

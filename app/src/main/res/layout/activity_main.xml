@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <!-- better sleep -->
     <TextView
@@ -34,30 +34,30 @@
         tools:ignore="HardcodedText" />
 
     <!-- set alarm -->
+
+    <ImageView
+        android:translationY="-30dp"
+        android:id="@+id/astronout"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/astronoutsleep"
+        tools:ignore="ContentDescription" />
+
     <Button
+        android:layout_marginTop="-20dp"
         android:id="@+id/alarm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button2"
         android:drawableLeft="@drawable/ic_alarm"
-        android:layout_marginBottom="10dp"
-        android:layout_centerInParent="true"
-        android:text="@string/set_alarm"
-        android:textSize="18sp"
+        android:layout_below="@id/astronout"
+        android:text="0:0"
+        android:textSize="14sp"
         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
-    <!-- stats button-->
-    <Button
-        android:id="@+id/stats_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="statistics"
-        android:textSize="14sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText" />
+    <include layout="@layout/navbar" />
 
 
 </RelativeLayout>

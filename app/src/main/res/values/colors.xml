@@ -10,4 +10,6 @@
     <color name="warna1">#3828B7</color>
     <color name="warna2">#9D91FF</color>
     <color name="transparant">#00FFFFFF</color>
+    <color name="navbar">#251751</color>
+    <color name="gray">#D3D3D3</color>
 </resources>

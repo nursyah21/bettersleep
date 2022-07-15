@@ -5,11 +5,58 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
-    android:padding="20dp"
-    tools:context=".StatsActivity">
+    tools:context=".activity.StatsActivity">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/stats_options"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <!-- week options -->
+            <Button
+                android:id="@+id/week_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="week"
+                android:textColor="@color/gray"
+                tools:ignore="ButtonStyle,HardcodedText" />
+
+            <!-- month options -->
+            <Button
+                android:id="@+id/month_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="month"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="20dp"
+                tools:ignore="ButtonStyle,HardcodedText" />
+
+            <!-- year options -->
+            <Button
+                android:id="@+id/year_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:text="year"
+                tools:ignore="ButtonStyle,HardcodedText" />
+
+        </LinearLayout>
 
     <HorizontalScrollView
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/stats_options"
         android:id="@+id/stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,15 +106,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    </RelativeLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="20dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:backgroundTint="@color/warna1"
         tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <include layout="@layout/navbar" />
+
 
 </RelativeLayout>

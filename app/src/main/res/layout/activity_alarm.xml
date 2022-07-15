@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".AlarmActivity">
+    tools:context=".activity.AlarmActivity">
 
     <TimePicker
         android:id="@+id/timePicker"
@@ -14,18 +14,25 @@
         android:numbersSelectorColor="@color/warna1"
         android:numbersTextColor="@color/warna2"
         android:numbersBackgroundColor="@color/transparant"
+        android:background="@color/transparant"
         android:layout_centerHorizontal="true"
+        android:amPmTextColor="@color/white"
+        android:numbersInnerTextColor="@color/white"
+
         tools:ignore="UnusedAttribute" />
 
     <Button
         android:id="@+id/start_sleeping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="Start Sleeping"
-        android:textSize="13sp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button2"
+        android:drawableLeft="@drawable/ic_alarm"
+        android:layout_below="@id/timePicker"
+        android:text="start sleeping"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+    <include layout="@layout/navbar" />
 
 </RelativeLayout>

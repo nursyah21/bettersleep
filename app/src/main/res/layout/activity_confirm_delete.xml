@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:padding="20dp"
-    tools:context=".ConfirmDeleteActivity">
+    tools:context=".activity.ConfirmDeleteActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,19 +25,21 @@
 
         tools:ignore="UselessParent">
 
+        <!-- make button to same width -->
         <Button
             android:id="@+id/deleteDatabaseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="delete"
             android:backgroundTint="#c00"
-            tools:ignore="HardcodedText,UnusedAttribute" />
+            android:text=" delete "
+            android:textColor="#F3E5F5"
+            tools:ignore="HardcodedText,UnusedAttribute,TextContrastCheck" />
 
         <Button
             android:id="@+id/cancel_button_confirmdelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cancel"
+            android:text=" cancel"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

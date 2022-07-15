@@ -1,10 +1,12 @@
-package com.example.mobile.julfani.tubes;
+package com.example.mobile.julfani.tubes.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mobile.julfani.tubes.R;
+import com.example.mobile.julfani.tubes.utils.Utils;
 import com.example.mobile.julfani.tubes.entity.SleepViewModel;
 
 public class ConfirmDeleteActivity extends AppCompatActivity {
@@ -16,6 +18,7 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
 
         /* set statusbar transparent */
         Utils.fullScreen(this);
+        Utils.hideNavbar(this);
 
         findViewById(R.id.deleteDatabaseButton).setOnClickListener(view -> {
             SleepViewModel sleepViewModel = new ViewModelProvider(this).get(SleepViewModel.class);
