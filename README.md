@@ -1,6 +1,7 @@
 # Better Sleep
 
-min requirement: android 4.4 (kitkat)
+min requirement: 
+android 4.4 (kitkat)
 
 ----
 ![](bettersleep_v1.11.png)
