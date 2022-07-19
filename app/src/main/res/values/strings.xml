@@ -3,4 +3,5 @@
     <string name="set_alarm">set alarm</string>
     <string name="options_alarm">only play once</string>
     <string name="description_app"> you need to sleep, That\'s the thing I made when making this app. This app is meant to remind you, even when we\'re being chased by multiple deadlines we need to sleep. Set a bedtime in between your work to make sure you get enough sleep </string>
+    <string name="tips_app">tips to sleep:\n\n1. stop playing smartphone\n2. Brush your teeth before going to bed\n3. drink warm milk\n4. clean your bed\n5. just close your eyes</string>
 </resources>

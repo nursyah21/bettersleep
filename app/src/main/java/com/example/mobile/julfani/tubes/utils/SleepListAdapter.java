@@ -44,6 +44,7 @@ public class SleepListAdapter extends RecyclerView.Adapter<SleepViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SleepViewHolder holder, int position) {
         String res = sleepList.get(position).getId() + " " + Utils.formatTime(sleepList.get(position).getDuration());
+
         holder.textView.setText(res);
     }
 

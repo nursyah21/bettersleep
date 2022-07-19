@@ -2,8 +2,12 @@ package com.example.mobile.julfani.tubes.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,14 +25,21 @@ import com.example.mobile.julfani.tubes.entity.SleepViewModel;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 
 public class StatsActivity extends AppCompatActivity {
 
     SleepViewModel sleepViewModel;
-    TextView avg, today, max;
 
+    Button week, month, year;
+    int white, black, options;
+    SleepListAdapter sleepListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,35 +50,34 @@ public class StatsActivity extends AppCompatActivity {
         Utils.fullScreen(this);
         Utils.hideNavbar(this);
 
+
         /* set stats icon */
         ImageView imageView = findViewById(R.id.stats_activity);
         imageView.setImageResource(R.drawable.statisticsiconselect);
 
         /* recycle view */
         RecyclerView recyclerView = findViewById(R.id.recycleview);
-        SleepListAdapter sleepListAdapter = new SleepListAdapter(this);
+        sleepListAdapter = new SleepListAdapter(this);
+
 
         recyclerView.setAdapter(sleepListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /* initialization  */
-        avg = findViewById(R.id.avg_duration);
-        today = findViewById(R.id.today_duration);
-        max = findViewById(R.id.max_duration);
-
         /* update data from sqlite */
         sleepViewModel = new ViewModelProvider(this).get(SleepViewModel.class);
 
+
         sleepViewModel.getAllData().observe(this, sleeps -> {
             statistics();
-            sleepListAdapter.setSleepList(sleeps);
+            setSleepListAdapter(sleeps);
         });
+
 
         /* confirm delete */
         findViewById(R.id.fab_delete).setOnClickListener(view ->
                 startActivity(new Intent(this, ConfirmDeleteActivity.class)));
 
-      /* back to home */
+       /* back to home */
         findViewById(R.id.home).setOnClickListener(v-> finish());
 
         /* see moon */
@@ -76,79 +86,128 @@ public class StatsActivity extends AppCompatActivity {
             startActivity(new Intent(this, MoonActivity .class));
         });
 
+        white = getResources().getColor(R.color.white);
+        black = getResources().getColor(R.color.black);
+
+
+        /* week */
+        week =  findViewById(R.id.week_options);
+        week.setOnClickListener(v -> setWeek());
+
+        /* month */
+        month = findViewById(R.id.month_options);
+        month.setOnClickListener(v -> setMonth());
+
+        /* year */
+        year = findViewById(R.id.year_options);
+        year.setOnClickListener(v -> setYear());
+
+        /* getshared preferences */
+        SharedPreferences sharedPreferences = getSharedPreferences("STATS_SHAREDPREFERENCE", 0);
+        String options_shared = sharedPreferences.getString("STATS_OPT", "MONTH");
+        setOptions(options_shared);
     }
+
+    private static class sortCompare implements Comparator<Sleep>{
+        private String replace(String s){
+            s = s.replaceAll("^([0-9])/","0$1/");
+            s = s.replaceAll("/([0-9])/","/0$1/");
+            return s;
+        }
+
+        @Override
+        public int compare(Sleep sleep, Sleep t1) {
+            String s1 = replace(sleep.getData());
+            String s2 = replace(t1.getData());
+
+            return s1.compareTo(s2);
+        }
+    }
+
+    private void setSleepListAdapter(List<Sleep> sleepList){
+        Collections.sort(sleepList, new sortCompare());
+        sleepListAdapter.setSleepList(sleepList);
+    }
+
+    private void setOptions(String options_shared){
+        switch (options_shared){
+            case "WEEK":
+                setWeek();
+                break;
+            case "MONTH":
+                setMonth();
+                break;
+            case "YEAR":
+                setYear();
+                break;
+        }
+    }
+
+    private void setWeek(){
+        options = 7;
+        week.setTextColor(white);
+        month.setTextColor(black);
+        year.setTextColor(black);
+        statistics();
+    }
+    private void setMonth(){
+        options = 30;
+        week.setTextColor(black);
+        month.setTextColor(white);
+        year.setTextColor(black);
+        statistics();
+    }
+    private void setYear(){
+        options = 365;
+        week.setTextColor(black);
+        month.setTextColor(black);
+        year.setTextColor(white);
+        statistics();
+    }
+
 
     @SuppressLint("SetTextI18n")
     private void statistics(){
+        TextView avg = findViewById(R.id.avg_duration);
+        TextView max = findViewById(R.id.max_duration);
+
         List<Sleep> sleepList = sleepViewModel.getAllData().getValue();
 
-        if(sleepList == null){
-            max.setText("max: 0");
-            today.setText("today: 0");
-            avg.setText("average: 0");
-            return;
-        }
+        if(sleepList == null) return;
+        /* get max, avg based options */
+        Collections.sort(sleepList, new sortCompare());
 
-        LinkedList<Integer> listDuration = new LinkedList<>();
+        LinkedList<Integer> duration = new LinkedList<>();
 
-        boolean firstData = true;
-        String date = "";
         int total = 0;
-        if(2>1){
-            String test = sleepList.get(0).getData().toString();
-            Toast.makeText(this, test, Toast.LENGTH_SHORT).show();
-            return;
-        }
+        String date = "";
+        for(Sleep sleep: sleepList){
+            if(date.equals(""))date = sleep.getDate();
 
-        /* find average */
-        for(Sleep i: sleepList){
-            if(firstData){
-                date = i.getData().split(" ")[0];
-                firstData = false;
-            }
-            int temp = 0;
+            total += sleep.getDuration();
 
-            /* different length array from platform, sometimes use ampm sometime use 24hour*/
-            int lengthtempStr = i.getData().split(" ").length;
-            String tempStr = i.getData().split(" ")[lengthtempStr - 1];
-
-            if(TextUtils.isDigitsOnly(tempStr)) temp = Integer.parseInt(tempStr);
-            total += temp;
-
-            String newDate = i.getData().split(" ")[0];
-
-            if (!date.equals(newDate)){
-                listDuration.add(total);
+            if(!sleep.getDate().equals(date)){
+                duration.add(total);
                 total = 0;
+                date = sleep.getDate();
             }
         }
+        if(duration.size() == 0) duration.add(total);
 
-        if(listDuration.size() == 0) listDuration.add(total);
-
-        /* update average, today, max */
-        int todayVal = listDuration.get(0);
-        int maxVal = todayVal;
-        int averageVal = 0;
-
-        for(int i : listDuration){
-            if(i > maxVal)maxVal = i;
-            averageVal += i;
+        int overflow = 0, max_var=0;
+        total=0;
+        for(Integer i : duration){
+            total += i;
+            overflow++;
+            if(i > max_var) max_var = i;
+            if(overflow >= options)break;
         }
+        int avg_var = total / overflow;
 
-        averageVal /= listDuration.size();
 
-        /*  update today val */
-        String dateformate = DateFormat.getInstance().format(Calendar.getInstance().getTime()).split(" ")[0];
+        avg.setText("average:\n" + Utils.formatTime(avg_var));
+        max.setText("max:\n" + Utils.formatTime(max_var));
 
-        if(sleepList.size() != 0 && !sleepList.get(1).getData().split(" ")[0].equals(dateformate)){
-            todayVal = 0;
-        }
-
-        today.setText("today: " + (todayVal >= 60 ? (todayVal / 60)+"h "+(todayVal % 60) + "m" : todayVal + "m"));
-        avg.setText("average: " + (averageVal >= 60 ? (averageVal / 60) + "h " + (todayVal % 60) + "m" : todayVal + "m"));
-        max.setText("max: " + (maxVal >= 60 ? (maxVal / 60) + "h " + (maxVal % 60) + "m" : maxVal + "m"));
     }
-
-
 
 }

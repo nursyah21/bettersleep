@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.MoonActivity">
+
+    <!-- better sleep -->
+    <TextView
+        android:id="@+id/bettersleep_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="bettersleep"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettersleep_about"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- description text -->
+            <TextView
+                android:id="@+id/description_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2C3F51B5"
+                android:padding="10dp"
+                android:text="@string/description_app"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+
+            <!-- options -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="options alarm:"
+
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- loop -->
+                    <Button
+                        android:id="@+id/loop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="loop"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                    <!-- raise sound -->
+                    <Button
+                        android:id="@+id/raise_sound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="raise sound"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                    <!-- alarm_sound -->
+
+                    <Button
+                        android:id="@+id/alarm_sound_default_actMoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="default"
+                        android:textColor="@color/white"
+                        tools:ignore="HardcodedText" />
+
+                    <Button
+                        android:id="@+id/alarm_sound_custom_actMoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="custom"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <!-- tips for sleep -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#2C3F51B5"
+                android:padding="10dp"
+                android:text="@string/tips_app"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <!-- version app -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="bettersleep v1.1"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+
+            <!-- link to website -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="Suspicious0dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:ignore="NestedWeights" />
+
+                    <!-- github -->
+                    <ImageView
+                        android:id="@+id/imageView_github"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/_747499_github_icon"
+                        tools:ignore="ContentDescription" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <!-- dummy view -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/navbar" />
+
+</RelativeLayout>

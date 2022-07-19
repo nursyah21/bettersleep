@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -13,11 +14,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +33,6 @@ public class SleepActivity extends AppCompatActivity {
     private TextView currentTimeTextView;
     private static int seconds, play,interval;
     private boolean run, found, options;
-    private RelativeLayout mainsleep, optionsleep;
     MediaPlayer mediaPlayer;
 
     private Sleep savedata;
@@ -45,6 +42,10 @@ public class SleepActivity extends AppCompatActivity {
     NotificationManagerCompat notificationManager;
 
     Handler handler;
+
+    static boolean loop, raisesound, cancelnotif=false;
+    TextView loopBtn, raiseSoundBtn;
+    static Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,7 @@ public class SleepActivity extends AppCompatActivity {
         Utils.hideNavbar(this);
 
         /* initialization */
-        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        mediaPlayer = MediaPlayer.create(this, uri);
+
         currentTimeTextView = findViewById(R.id.time_remaining);
         seconds = getIntent().getIntExtra(AlarmActivity.TIMESLEEP, 0);
 
@@ -71,33 +71,31 @@ public class SleepActivity extends AppCompatActivity {
         savedata = new Sleep(Utils.getDate(), Utils.getTime(), seconds);
         handler = new Handler(Looper.getMainLooper());
 
-        mainsleep = findViewById(R.id.mainsleep);
-        optionsleep = findViewById(R.id.options_layout);
-
         findViewById(R.id.end_sleep).setOnClickListener(this::launchMainActivity);
 
+        /* get shared preferences */
+        SharedPreferences sharedPreferences = getSharedPreferences(MoonActivity.SHAREDPREFERENCES, 0);
+        loop = sharedPreferences.getBoolean(MoonActivity.SHAREDPREFERENCES_LOOP, false);
+        raisesound = sharedPreferences.getBoolean(MoonActivity.SHAREDPREFERENCES_RAISESOUND, false);
 
-        /* options sleep */
-        EditText set_play = findViewById(R.id.set_play_edittext);
-        EditText set_interval = findViewById(R.id.set_interval_edittext);
+        loopBtn = findViewById(R.id.loop_sleepAct);
+        raiseSoundBtn = findViewById(R.id.raise_sound_sleepAct);
+        loopBtn.setOnClickListener(this::setLoopBtn);
+        raiseSoundBtn.setOnClickListener(this::setRaiseSoundBtn);
 
-        findViewById(R.id.set_alarm).setOnClickListener(v->{
-            String set_playStr = set_play.getText().toString();
-            String set_intervalStr = set_interval.getText().toString();
-            int new_play = 0, new_interval = 0;
+        /* alarm sound */
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        String getUri = sharedPreferences.getString(MoonActivity.SHAREDPREFERENCES_ALARMSOUND, uri.toString());
+        uri = Uri.parse(getUri);
 
-            if(TextUtils.isDigitsOnly(set_playStr)) new_play = Integer.parseInt(set_playStr);
-            if(TextUtils.isDigitsOnly(set_intervalStr)) new_interval = Integer.parseInt(set_intervalStr);
+        mediaPlayer = MediaPlayer.create(this, uri);
 
-
-                play = new_play;
-                interval = new_interval;
-                options = false;
-
-                mainsleep.setVisibility(View.INVISIBLE);
-                optionsleep.setVisibility(View.VISIBLE);
-
-        });
+        if(loop){
+            loopBtn.setTextColor(getResources().getColor(R.color.white));
+        }
+        if(raisesound){
+            raiseSoundBtn.setTextColor(getResources().getColor(R.color.white));
+        }
 
         /* run alarm */
         handler.post(runnable());
@@ -108,6 +106,42 @@ public class SleepActivity extends AppCompatActivity {
     }
 
 
+    public void setRaiseSoundBtn(View view){
+        String status;
+        if(raisesound){
+            raiseSoundBtn.setTextColor(getResources().getColor(R.color.black));
+            raisesound = false;
+            status = "raise sound disable";
+        }else{
+            raiseSoundBtn.setTextColor(getResources().getColor(R.color.white));
+            raisesound = true;
+            status = "raise sound enable";
+        }
+
+        if(toast != null)toast.cancel();
+        toast = Toast.makeText(this, status, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void setLoopBtn(View view){
+        String status;
+        if(loop){
+            loopBtn.setTextColor(getResources().getColor(R.color.black));
+            loop = false;
+            play = Integer.MAX_VALUE;
+            status = "loop disable";
+        }else{
+            loopBtn.setTextColor(getResources().getColor(R.color.white));
+            loop = true;
+            play = 1;
+            status = "loop enable";
+        }
+
+
+        if(toast != null)toast.cancel();
+        toast = Toast.makeText(this, status, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     public void createNotification(){
 
@@ -130,8 +164,6 @@ public class SleepActivity extends AppCompatActivity {
             channel.setVibrationPattern(new long[]{0});
             channel.enableVibration(true);
 
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
@@ -147,18 +179,20 @@ public class SleepActivity extends AppCompatActivity {
     public void launchMainActivity (View view){
         handler.removeCallbacks(runnable());
         run = false;
-
-        notificationManager.deleteNotificationChannel(channelidStr);
         finish();
 
         if(found){
             mediaPlayer.stop();
             handler.removeCallbacks(runnable());
             startActivity(new Intent(this, StatsActivity.class));
+            cancelnotif = true;
         }
+
+        notificationManager.deleteNotificationChannel(channelidStr);
+        notificationManager.cancelAll();
     }
 
-    /*  */
+    /* runnable */
     private Runnable runnable(){
         return new Runnable() {
             @SuppressLint("SetTextI18n")
@@ -177,29 +211,37 @@ public class SleepActivity extends AppCompatActivity {
                 }
 
                 if(run) handler.postDelayed(this, 1000);
+                else if(!found && !mediaPlayer.isPlaying()) notificationManager.cancelAll();
 
                 if(seconds <= 0){
-                    result = "-" + Utils.formatTime(-1 * seconds);
+                    result = "Wake Up\n" + Utils.formatTime(-1 * seconds);
                     currentTimeTextView.setText(result);
-                    currentTimeTextView.setTextColor(Color.red(1));
+
                     /* update notification  */
                     builder.setContentText(result);
+
                     notificationManager.notify(1, builder.build());
+
                     Button button= findViewById(R.id.end_sleep);
                     button.setText("finish");
                     found = true;
                     runAlarm();
+                    if(cancelnotif)notificationManager.cancelAll();
                 }
             }
         };
     }
 
+    @SuppressLint("SetTextI18n")
     private void runAlarm(){
         handler.post(loopAlarm());
 
         /* save data */
-//        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-//        audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.ADJUST_RAISE);
+        if(raisesound){
+            AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+            audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.ADJUST_RAISE);
+        }
+
 
         SleepViewModel sleepViewModel = new ViewModelProvider(this).get(SleepViewModel.class);
         sleepViewModel.insert(savedata);
@@ -223,7 +265,14 @@ public class SleepActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         String res = (options) ? "please tap enter" : "please tap cancel button";
-        Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
+        if(toast != null)toast.cancel();
+        toast = Toast.makeText(this, res, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
+    @Override
+    public void finish() {
+        super.finish();
+        if(toast != null)toast.cancel();
     }
 }

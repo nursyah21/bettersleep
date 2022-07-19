@@ -7,150 +7,70 @@
     tools:context=".activity.SleepActivity">
 
 
-    <!-- main layout -->
-    <RelativeLayout
-        android:id="@+id/mainsleep"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent">
+    <!-- better sleep -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="bettersleep"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
 
-        <TextView
+    <!-- text remaining -->
+    <TextView
+        android:id="@+id/time_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Wake Up"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:text="bettersleep"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_centerHorizontal="true"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/time_remaining"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="30m 10s"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:layout_centerInParent="true"
-            tools:ignore="HardcodedText" />
-
-
-
-        <!-- end sleep -->
-        <Button
-            android:id="@+id/end_sleep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:text="Cancel Sleep"
-            android:textSize="13sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-    </RelativeLayout>
-
-
-    <!-- settings alarm -->
-    <RelativeLayout
-        android:id="@+id/options_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:id="@+id/bettersleep_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:text="bettersleep"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_centerHorizontal="true"
-            tools:ignore="HardcodedText" />
-
-        <!-- set play -->
-        <LinearLayout
-            android:id="@+id/set_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_below="@id/bettersleep_textview"
-            android:layout_centerHorizontal="true"
-            tools:ignore="UselessParent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="play:               "
-                tools:ignore="HardcodedText" />
-
-            <EditText
-                android:id="@+id/set_play_edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="2"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="1"
-                tools:ignore="HardcodedText,LabelFor" />
-
-        </LinearLayout>
-
-        <!-- set interval -->
-
-        <LinearLayout
-            android:id="@+id/set_loop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/set_play"
-            android:layout_centerHorizontal="true"
-            tools:ignore="UselessParent">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="interval (m): "
-                tools:ignore="HardcodedText" />
-
-            <EditText
-                android:id="@+id/set_interval_edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="2"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="1"
-                tools:ignore="HardcodedText,LabelFor" />
-
-        </LinearLayout>
+    <!-- options -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/time_remaining"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/set_alarm"
+            android:id="@+id/loop_sleepAct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="enter"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/set_loop"
+            android:textColor="@color/black"
+            android:text="loop"
             tools:ignore="HardcodedText" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/raise_sound_sleepAct"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="raise sound"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <!-- end sleep -->
+    <Button
+        android:id="@+id/end_sleep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="Cancel Sleep"
+        android:textSize="13sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
 
 
 </RelativeLayout>

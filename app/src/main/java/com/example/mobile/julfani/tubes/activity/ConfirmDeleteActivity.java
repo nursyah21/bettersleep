@@ -23,7 +23,6 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
         findViewById(R.id.deleteDatabaseButton).setOnClickListener(view -> {
             SleepViewModel sleepViewModel = new ViewModelProvider(this).get(SleepViewModel.class);
             sleepViewModel.deleteAll();
-
             finish();
         });
 

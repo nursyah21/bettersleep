@@ -26,6 +26,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         /* set statusbar transparent */
         Utils.fullScreen(this);
+        Utils.hideNavbar(this);
 
         /* initialize */
         timePicker = findViewById(R.id.timePicker);
@@ -44,19 +45,16 @@ public class AlarmActivity extends AppCompatActivity {
 
         /* see statistics */
         findViewById(R.id.stats_activity).setOnClickListener(v ->{
-            finish();
             startActivity(new Intent(this, StatsActivity .class));
         });
 
 
         /* see moon */
         findViewById(R.id.moon_activity).setOnClickListener(v ->{
-            finish();
+
             startActivity(new Intent(this, MoonActivity .class));
         });
 
-
-        Utils.hideNavbar(this);
     }
 
 

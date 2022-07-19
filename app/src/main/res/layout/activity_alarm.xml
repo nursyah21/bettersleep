@@ -29,6 +29,7 @@
         android:background="@drawable/rounded_button2"
         android:drawableLeft="@drawable/ic_alarm"
         android:layout_below="@id/timePicker"
+        android:layout_marginTop="10dp"
         android:text="start sleeping"
         android:textSize="12sp"
         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
