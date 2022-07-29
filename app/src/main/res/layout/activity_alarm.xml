@@ -2,38 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_sleep"
+    android:padding="20dp"
     tools:context=".activity.AlarmActivity">
 
+
+    <!-- bettersleep textview -->
+    <TextView
+        android:id="@+id/bettersleep_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="bettersleep"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        tools:ignore="HardcodedText" />
+
+    <!-- pick time -->
     <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_marginTop="30dp"
+        android:id="@+id/timepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:headerBackground="@color/transparant"
-        android:numbersSelectorColor="@color/warna1"
-        android:numbersTextColor="@color/warna2"
-        android:numbersBackgroundColor="@color/transparant"
-        android:background="@color/transparant"
+        android:timePickerMode="spinner"
+        android:background="@color/color1_transparent"
+        android:layout_below="@id/bettersleep_textview"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        android:amPmTextColor="@color/white"
-        android:numbersInnerTextColor="@color/white"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="10dp"/>
 
-        tools:ignore="UnusedAttribute" />
-
+    <!-- sleep -->
     <Button
-        android:id="@+id/start_sleeping"
+        android:id="@+id/sleep_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/color1_transparent"
+        android:layout_below="@id/timepicker"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_button2"
-        android:drawableLeft="@drawable/ic_alarm"
-        android:layout_below="@id/timePicker"
-        android:layout_marginTop="10dp"
-        android:text="start sleeping"
-        android:textSize="12sp"
-        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+        android:text="sleep"
+        tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
 
-    <include layout="@layout/navbar" />
+
 
 </RelativeLayout>

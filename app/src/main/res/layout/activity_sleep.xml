@@ -2,75 +2,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:clipChildren="false"
+    android:background="@drawable/background_sleep"
+    android:padding="20dp"
     tools:context=".activity.SleepActivity">
 
 
-    <!-- better sleep -->
+    <!-- bettersleep textview -->
     <TextView
+        android:id="@+id/bettersleep_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:text="bettersleep"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
         android:layout_centerHorizontal="true"
+        android:text="bettersleep"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
         tools:ignore="HardcodedText" />
 
-    <!-- text remaining -->
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="sleep"
+        android:layout_above="@id/time_remaining"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/margin"
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/time_remaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Wake Up"
-        android:textAlignment="center"
+        android:textSize="@dimen/time"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:text="10h 20m 30s"
+        android:layout_centerInParent="true"
         tools:ignore="HardcodedText" />
 
-    <!-- options -->
     <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/time_remaining"
+        android:layout_marginTop="@dimen/margin"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content">
+        tools:ignore="UselessLeaf">
 
+        <!-- finish -->
         <Button
-            android:id="@+id/loop_sleepAct"
+            android:id="@+id/finisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="loop"
-            tools:ignore="HardcodedText" />
+            android:text="finish"
+            android:layout_marginHorizontal="@dimen/margin"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
+        <!-- cancel -->
         <Button
-            android:id="@+id/raise_sound_sleepAct"
-            android:layout_marginStart="10dp"
+            android:id="@+id/cancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="raise sound"
-            tools:ignore="HardcodedText" />
+            android:text="cancel"
+            android:backgroundTint="@color/red"
+            android:layout_marginHorizontal="@dimen/margin"
+            tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute" />
 
     </LinearLayout>
-
-    <!-- end sleep -->
-    <Button
-        android:id="@+id/end_sleep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="Cancel Sleep"
-        android:textSize="13sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText,RtlHardcoded" />
-
-
 
 
 </RelativeLayout>

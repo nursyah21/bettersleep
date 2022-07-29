@@ -3,61 +3,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:fitsSystemWindows="true"
+    android:background="@drawable/background_sleep"
+    android:padding="20dp"
     tools:context=".activity.MainActivity">
 
-    <!-- better sleep -->
+    <!-- bettersleep textview -->
     <TextView
         android:id="@+id/bettersleep_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
         android:text="bettersleep"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
         tools:ignore="HardcodedText" />
 
-    <!-- run clock -->
+    <!-- alarm text_view -->
     <TextView
-        android:id="@+id/current_time"
+        android:id="@+id/alarm_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
         android:layout_centerHorizontal="true"
-        android:text="0:0"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"
-        android:textStyle="bold"
         android:layout_below="@id/bettersleep_textview"
+        android:text="10:00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/time"
+        android:layout_marginTop="15dp"
         tools:ignore="HardcodedText" />
 
-    <!-- set alarm -->
 
-    <ImageView
-        android:translationY="-30dp"
-        android:id="@+id/astronout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/astronoutsleep"
-        tools:ignore="ContentDescription" />
-
-    <Button
-        android:layout_marginTop="-20dp"
-        android:id="@+id/alarm_button"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_button2"
-        android:drawableLeft="@drawable/ic_alarm"
-        android:layout_below="@id/astronout"
-        android:text="0:0"
-        android:textSize="14sp"
-        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+        android:layout_centerInParent="true">
 
-    <include layout="@layout/navbar" />
+        <ImageView
+            android:id="@+id/astronoutSleep"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/astronoutsleep"
+            android:layout_centerHorizontal="true"
+            tools:ignore="ContentDescription" />
+
+        <!-- 3 buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/astronoutSleep"
+            android:orientation="horizontal">
+
+                <!-- options -->
+            <ImageView
+                android:id="@+id/options_imgview"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:src="@drawable/clear_night_48px"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                <!-- alarm -->
+            <ImageView
+                android:id="@+id/alarm_imgview"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:padding="2dp"
+                android:src="@drawable/alarm_48px"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                <!-- stats -->
+            <ImageView
+                android:id="@+id/stats_imgview"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:src="@drawable/bar_chart_48px"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
