@@ -3,58 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
+    android:background="@drawable/background_sleep"
+    android:padding="20dp"
     tools:context=".activity.StatsActivity">
 
-
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/person_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        >
+        android:layout_marginTop="15dp"
+        android:src="@drawable/person_48px"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
-        <LinearLayout
-            android:id="@+id/stats_options"
-            android:layout_marginTop="5dp"
+    <TextView
+        android:id="@+id/person_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/person_img"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/person_img"
+        android:text="bettersleep"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/person_img"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/stats_options"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/person_img"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <!-- week options -->
+        <Button
+            android:id="@+id/week_options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+            android:text="week"
+            android:textColor="@color/color2"
+            android:textSize="12sp"
+            android:backgroundTint="@color/color1_transparent"
+            tools:ignore="ButtonStyle,HardcodedText,TextContrastCheck" />
 
-            <!-- week options -->
-            <Button
-                android:id="@+id/week_options"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="week"
-                android:textColor="@color/black"
-                tools:ignore="ButtonStyle,HardcodedText" />
+        <!-- month options -->
+        <Button
+            android:id="@+id/month_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="month"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:backgroundTint="@color/color1_transparent"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
-            <!-- month options -->
-            <Button
-                android:id="@+id/month_options"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="month"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="20dp"
-                tools:ignore="ButtonStyle,HardcodedText" />
+        <!-- year options -->
+        <Button
+            android:id="@+id/year_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="year"
+            android:textColor="@color/color2"
+            android:textSize="12sp"
+            android:backgroundTint="@color/color1_transparent"
+            tools:ignore="ButtonStyle,HardcodedText,TextContrastCheck" />
+    </LinearLayout>
 
-            <!-- year options -->
-            <Button
-                android:id="@+id/year_options"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:text="year"
-                tools:ignore="ButtonStyle,HardcodedText" />
-
-        </LinearLayout>
-
+    <!-- stats average, max -->
     <HorizontalScrollView
         android:layout_below="@id/stats_options"
         android:id="@+id/stats"
@@ -77,7 +101,8 @@
                 android:textSize="13sp"
                 android:textAlignment="center"
                 android:layout_marginHorizontal="10dp"
-                tools:ignore="HardcodedText" />
+                android:backgroundTint="@color/color1_transparent"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
             <Button
                 android:id="@+id/max_duration"
@@ -88,43 +113,29 @@
                 android:text="max:\n0 sec"
                 android:padding="15dp"
                 android:textAlignment="center"
-                tools:ignore="HardcodedText" />
-
-
+                android:backgroundTint="@color/color1_transparent"
+                tools:ignore="ButtonStyle,HardcodedText" />
         </LinearLayout>
     </HorizontalScrollView>
 
+    <!-- history sleep -->
+
     <TextView
-        android:id="@+id/textview_history"
+        android:id="@+id/textview_sleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="history"
+        android:text="sleep"
+        android:layout_marginTop="15dp"
         android:textColor="@color/white"
         android:layout_below="@id/stats"
         tools:ignore="HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview"
-        android:layout_below="@id/textview_history"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_delete"
+        android:id="@+id/recycleview_sleep"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_baseline_delete_24"
-        app:backgroundTint="@color/warna1"
-        tools:ignore="ContentDescription,UnusedAttribute" />
-
-    <include layout="@layout/navbar" />
+        android:layout_below="@id/textview_sleep"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
